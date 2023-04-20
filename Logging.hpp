@@ -3,11 +3,13 @@
 #include <iostream>
 #include <sstream>
 
+#define LOGTYPE Logger::LogType
 
 class Logger
 {
 private:
 	bool m_is_logging_enable;
+	std::string m_source;
 
 public:
 	typedef enum {
@@ -19,7 +21,7 @@ public:
 	} LogType;
 
 
-	Logger();
+	Logger(std::string source);
 
 	void say(LogType type, std::string text);
 
@@ -27,4 +29,3 @@ public:
 	void enable();
 	void toggle();
 };
-

@@ -1,8 +1,9 @@
 #include "Logging.hpp"
 
 
-Logger::Logger()
+Logger::Logger(std::string source)
 {
+	m_source = source;
 	m_is_logging_enable = true;
 }
 
@@ -16,22 +17,22 @@ void Logger::say(LogType type, std::string text)
 	switch (type)
 	{
 	case DEBUG:
-		buffer << "\x1B[97m[Debug]";
+		buffer << "\x1B[97m(" << m_source << "):[Debug]";
 		break;
 	case INFO:
-		buffer << "\x1B[92m[Info]";
+		buffer << "\x1B[92m(" << m_source << "):[Info]";
 		break;
 	case WARN:
-		buffer << "\x1B[33m[Warning]";
+		buffer << "\x1B[33m(" << m_source << "):[Warning]";
 		break;
 	case ERROR:
-		buffer << "\x1B[31m[Error]";
+		buffer << "\x1B[31m(" << m_source << "):[Error]";
 		break;
 	case CRIT:
-		buffer << "\x1B[41m[Critical]";
+		buffer << "\x1B[41m(" << m_source << "):[Critical]";
 		break;
 	default:
-		buffer << "\x1B[90m[UNDEF]";
+		buffer << "\x1B[90m(" << m_source << "):[UNDEF]";
 		break;
 	}
 
